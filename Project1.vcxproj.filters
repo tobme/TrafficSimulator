@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{5bc9f54c-335d-494e-8dbf-6a77f3c0d3f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{39d36ef0-e2d1-4c2a-8be8-1e57d0324b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes">
+      <UniqueIdentifier>{e8f8b11e-a7c1-4921-99f2-4b3770d5ae5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes\Cars">
+      <UniqueIdentifier>{0bf2f165-e04f-4789-a819-90b1753365e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes">
+      <UniqueIdentifier>{954e5805-b0de-49c9-ad40-77f7fb4dd008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\Cars">
+      <UniqueIdentifier>{76085d37-ad94-44ab-a1ba-cc449dc49b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{45dd892c-9186-40af-80cd-78504f1be6e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects\Cars">
+      <UniqueIdentifier>{07c7ed52-6c37-474f-a913-f9e5b7bbadea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{c1f21049-0b58-4f32-927f-115179441146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Cars">
+      <UniqueIdentifier>{ec4aaebb-85ae-436f-b7a5-d0169b3ea99a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Base">
+      <UniqueIdentifier>{e163d62e-8701-4e73-9192-68af863386e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{78bddddf-fd72-45b9-b7d9-4d36e46f11df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{761b2f46-770b-49f2-96de-154f9d21c650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{aa82b3af-2e6e-4b49-abad-c8e1476e813d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Deployment">
+      <UniqueIdentifier>{5cdf01fe-985b-419b-b133-c6a079345df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Deployment">
+      <UniqueIdentifier>{5d91cf44-db81-4f9b-89b4-50c6652327f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{ae27b0b7-a7b6-4d44-b590-9dc1587ea3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{98683247-1d97-4795-96ef-2b9260cff1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{04307791-1f31-4e3e-83fc-46d5dba9c5a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{f54011fc-3827-4edd-923e-1c3539aca569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes\Road">
+      <UniqueIdentifier>{d0c28746-8e02-453c-b3a6-830d1e8d76fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\Road">
+      <UniqueIdentifier>{eda727fa-fe1f-4abf-af51-ecfaf89dea26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Taxi.cpp">
+      <Filter>Source Files\Shapes\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="CarFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="CarDeployment.cpp">
+      <Filter>Source Files\Deployment</Filter>
+    </ClCompile>
+    <ClCompile Include="DeploymentMaster.cpp">
+      <Filter>Source Files\Deployment</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableObject.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="Subscriber.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="VehicleEventHandler.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MapParser.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Road.cpp">
+      <Filter>Source Files\Shapes\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Prop.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="IDrawableObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="CarSimulator.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerConnector.cpp">
+      <Filter>Source Files\Deployment</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkableProp.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IDrawableShape.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableShape.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Taxi.h">
+      <Filter>Header Files\Shapes\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="IObject.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ITriggable.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CarFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawableObject.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CarDeployment.h">
+      <Filter>Header Files\Deployment</Filter>
+    </ClInclude>
+    <ClInclude Include="DeploymentMaster.h">
+      <Filter>Header Files\Deployment</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureId.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableObject.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="Subscriber.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IEvents.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IEventHandler.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableEvents.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="MutlipleEventWrapper.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSubription.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="VehicleEventHandler.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MapParser.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Road.h">
+      <Filter>Header Files\Shapes\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Prop.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IConfig.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CarSimulator.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="CarStates.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerConnector.h">
+      <Filter>Header Files\Deployment</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkableProp.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project1.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Bibliotek\Bilder\TrafficSimulator\taxi.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
