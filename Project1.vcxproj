@@ -131,19 +131,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CarMovingStateAssistant.cpp" />
+    <ClCompile Include="CarPedalAssistant.cpp" />
     <ClCompile Include="CarSimulator.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="IDrawableObject.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MapParser.cpp" />
+    <ClCompile Include="MovableAssistantFactory.cpp" />
     <ClCompile Include="MovableObject.cpp" />
     <ClCompile Include="CarDeployment.cpp" />
     <ClCompile Include="CarFactory.cpp" />
     <ClCompile Include="DeploymentMaster.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Prop.cpp" />
+    <ClCompile Include="PropFactory.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="RoadFactory.cpp" />
     <ClCompile Include="Subscriber.cpp" />
@@ -156,17 +161,22 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CarMovingStateAssistant.h" />
+    <ClInclude Include="CarPedalAssistant.h" />
     <ClInclude Include="CarSimulator.h" />
     <ClInclude Include="CarStates.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSubription.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="IConfig.h" />
     <ClInclude Include="IEventHandler.h" />
     <ClInclude Include="IEvents.h" />
+    <ClInclude Include="IMovingAssistant.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MapParser.h" />
+    <ClInclude Include="MovableAssistantFactory.h" />
     <ClInclude Include="MovableEvents.h" />
     <ClInclude Include="MovableObject.h" />
     <ClInclude Include="CarDeployment.h" />
@@ -179,6 +189,7 @@
     <ClInclude Include="ITriggable.h" />
     <ClInclude Include="MutlipleEventWrapper.h" />
     <ClInclude Include="Prop.h" />
+    <ClInclude Include="PropFactory.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="RoadFactory.h" />

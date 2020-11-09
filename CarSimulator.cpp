@@ -7,12 +7,17 @@ using namespace map;
 
 namespace object {
 	namespace cars {
-		CarSimulator::CarSimulator(const std::string& name, const Map& map, Subscriber* pSubscriber)
+		CarSimulator::CarSimulator(const std::string& name,
+			const Map& map,
+			Subscriber* pSubscriber,
+			Config config)
 			: EventHandler<event::GPSUpdateEvent>()
 			, ITriggable()
 			, IObject(name)
 			, m_map(map)
 			, m_pSubscriber(pSubscriber)
+			, m_pCarMovingStateAssistant(config.m_pCarMovingStateAssistant)
+			, m_pCarPedalAssistant(config.m_pCarPedalAssistant)
 		{
 			m_pSubscriber->subscribe(GPSUpdateSubscription, this);
 		}
@@ -22,13 +27,18 @@ namespace object {
 		void CarSimulator::doHandle(const GPSUpdateEvent& event)
 		{
 			std::string name = event.getName();
-			auto pos = event.position;
-			std::cout << "test2" << std::endl;
+			auto& pos = event.position;
+			auto& config = event.config;
 
-			// Need to translate map index to map position
-			// Make every object 50x50? Or loop map?
+			//! Checks so the car doesn't leave road
+			//! 
+			//! If there are no turns available, then the assistant sets
+			//! the cars turn state.
+			m_pCarMovingStateAssistant->updateState(name, config, pos);
 
-			// 50 x 50 sounds good for efficiency
+			m_pCarPedalAssistant->updateState(name, config, pos);
+
+			
 		}
 
 		// NEEDED? doHandle and trigger work on different threads

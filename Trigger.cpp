@@ -3,15 +3,17 @@
 #include<algorithm>
 #include<chrono>
 #include <functional>
+#include <mutex>
 
 namespace base {
 
 
-		static const int SLEEP_TIME = 500;
+		static const int SLEEP_TIME = 20;
 
 		void Trigger::pushTrigger()
 		{
-			static thread_local std::unique_lock<std::mutex> lock(m_mutex, std::defer_lock);
+			std::unique_lock<std::mutex> lock(m_mutex);
+			lock.unlock();
 
 			while (true)
 			{

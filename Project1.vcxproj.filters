@@ -150,6 +150,21 @@
     <ClCompile Include="WalkableProp.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="CarMovingStateAssistant.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableAssistantFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="PropFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="CarPedalAssistant.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDrawableShape.h">
@@ -256,6 +271,24 @@
     </ClInclude>
     <ClInclude Include="WalkableProp.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CarMovingStateAssistant.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovingAssistant.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableAssistantFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PropFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="CarPedalAssistant.h">
+      <Filter>Header Files\Objects\Cars</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

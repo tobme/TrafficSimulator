@@ -6,7 +6,9 @@
 // Factories
 #include "CarFactory.h"
 #include "RoadFactory.h"
+#include "PropFactory.h"
 
+using namespace shapes;
 using namespace shape::cars;
 using namespace base;
 using namespace std;
@@ -35,6 +37,14 @@ namespace map {
 		addMapItem<VerticalRoad*>(x, y, pRoad);
 	}
 
+	void MapParser::addGrass(const std::string& name, unsigned int x, unsigned int y)
+	{
+		auto pGrass = createGrass(name, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y));
+		addItem(pGrass->getName(), pGrass, true);
+
+		addMapItem<Grass*>(x, y, pGrass);
+	}
+
 	MapParser::MapParser(const std::string& configName, Subscriber* pSubscriber)
 		: m_map(18, 32)
 	{
@@ -52,6 +62,9 @@ namespace map {
 		{
 			switch (objectNumber)
 			{
+			case 0:
+				addGrass("Grass", x, y);
+				break;
 			case 1:
 				//Road
 				addVerticalRoad("VerticalRoad", pSubscriber, x, y);

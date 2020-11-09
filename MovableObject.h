@@ -27,14 +27,21 @@ namespace object {
 
 			void updateTrigger()  override;
 
-			void move(float x, float y);
-
 			void doHandleEvent(const event::VehicleMovedEvents& e) override;
 			void doHandleEvent(const event::VehicleDirectionEvent& e) override;
+			void doHandleEvent(const event::VehicleTurnEvent& e) override;
+			void doHandleEvent(const event::VehiclePedalEvent& e) override;
 		private:
-			Direction m_direction;
-			State m_state;
+
+			void move();
+
+			void updateCar();
+
+			void updateCarSpeed();
+
+			CarConfig m_config;
 			base::Subscriber* m_pSubscriber;
+			float m_speed;
 		};
 	}
 }

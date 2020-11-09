@@ -6,7 +6,9 @@ namespace base {
 	enum EventSpecifier {
 		VEHICLE_MOVED,
 		VEHICLE_DIRECTION,
-		GPS_UPDATE
+		GPS_UPDATE,
+		VEHICLE_TURN,
+		VEHICLE_PEDAL,
 	};
 
 	class IEvent {

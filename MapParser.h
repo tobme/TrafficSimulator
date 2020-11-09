@@ -23,6 +23,7 @@ namespace map {
 
 		void addTaxi(const std::string& name, base::Subscriber* pSubscriber, unsigned int x, unsigned int y);
 		void addVerticalRoad(const std::string& name, base::Subscriber* pSubscriber, unsigned int x, unsigned int y);
+		void addGrass(const std::string& name, unsigned int x, unsigned int y);
 
 		std::ifstream getMapStream(const std::string& configName) const;
 

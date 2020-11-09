@@ -15,6 +15,8 @@ namespace base
 
 		virtual void doHandleEvent(const event::VehicleMovedEvents& e);
 		virtual void doHandleEvent(const event::VehicleDirectionEvent& e);
+		virtual void doHandleEvent(const event::VehicleTurnEvent& e);
+		virtual void doHandleEvent(const event::VehiclePedalEvent& e);
 
 	};
 }

@@ -40,14 +40,34 @@ namespace event {
 		~VehicleDirectionEvent() {}
 	};
 
+	class VehicleTurnEvent final : public VehicleUpdatedEvent
+	{
+	public:
+		VehicleTurnEvent(const std::string& name, object::cars::TurnState turnState)
+			: VehicleUpdatedEvent(name, base::EventSpecifier::VEHICLE_TURN), newTurnState(turnState)
+		{ }
+		~VehicleTurnEvent() {}
+		object::cars::TurnState newTurnState;
+	};
+
+	class VehiclePedalEvent final : public VehicleUpdatedEvent
+	{
+	public:
+		VehiclePedalEvent(const std::string& name, object::cars::State pedalState)
+			: VehicleUpdatedEvent(name, base::EventSpecifier::VEHICLE_PEDAL), newPedalState(pedalState)
+		{ }
+		~VehiclePedalEvent() {}
+		object::cars::State newPedalState;
+	};
+
 	class GPSUpdateEvent final : public base::IEvent
 	{
 	public:
-		GPSUpdateEvent(const std::string& name, const sf::Vector2f& pos, object::cars::Direction dir)
-			: IEvent(name, base::EventSpecifier::GPS_UPDATE), position(pos), direction(dir)
+		GPSUpdateEvent(const std::string& name, const sf::Vector2f& pos, const object::cars::CarConfig& cfg)
+			: IEvent(name, base::EventSpecifier::GPS_UPDATE), position(pos), config(cfg)
 		{}
 		~GPSUpdateEvent() = default;
 		sf::Vector2f position;
-		object::cars::Direction direction;
+		object::cars::CarConfig config;
 	};
 }

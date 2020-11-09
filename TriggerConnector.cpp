@@ -12,9 +12,6 @@ namespace deployment {
 	{
 		auto trigger = World::getItem<Trigger>("Trigger");
 
-		// @todo Needs to made dynamic
-		auto Taxi1 = World::getItem<Taxi>("Taxi1");
 
-		trigger->addTriggable(Taxi1, base::TimeElapsed::ELAPSED_0);
 	}
 }

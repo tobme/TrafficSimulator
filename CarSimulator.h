@@ -7,6 +7,8 @@
 #include "ITriggable.h"
 #include "IObject.h"
 
+#include "IMovingAssistant.h"
+
 namespace object {
 	namespace cars {
 		class CarSimulator 
@@ -15,14 +17,24 @@ namespace object {
 			, public base::IObject
 		{
 		public:
-			CarSimulator(const std::string& name, const map::Map& map, base::Subscriber* pSubscriber);
+			struct Config {
+				IMovingAssistant* m_pCarMovingStateAssistant;
+				IMovingAssistant* m_pCarPedalAssistant;
+			};
+
+			CarSimulator(const std::string& name,
+				const ::map::Map& map,
+				base::Subscriber* pSubscriber,
+				Config config);
 			~CarSimulator() = default;
 
 			void doHandle(const event::GPSUpdateEvent& event) override;
 			void updateTrigger() override;
 		private:
-			map::Map m_map;
+			::map::Map m_map;
 			base::Subscriber* m_pSubscriber;
+			IMovingAssistant* m_pCarMovingStateAssistant;
+			IMovingAssistant* m_pCarPedalAssistant;
 		};
 
 	}

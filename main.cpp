@@ -18,14 +18,13 @@ using namespace deployment;
 
 int main()
 {
+	//Deploy
+	deployWorld();
+
 	auto& world = World::getInstance();
-	world.init();
 	auto& drawItems = world.m_drawingItems;
 
 	sf::RenderWindow& window(world.m_renderwindow);
-
-	//Deploy
-	deployWorld();
 
 	// Connect
 	connectTriggers();

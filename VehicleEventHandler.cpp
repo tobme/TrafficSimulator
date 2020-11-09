@@ -19,8 +19,14 @@ namespace base {
 		case EventSpecifier::VEHICLE_DIRECTION:
 			doHandleEvent(dynamic_cast<const VehicleDirectionEvent&>(e));
 			break;
+		case EventSpecifier::VEHICLE_TURN:
+			doHandleEvent(dynamic_cast<const VehicleTurnEvent&>(e));
+			break;
+		case EventSpecifier::VEHICLE_PEDAL:
+			doHandleEvent(dynamic_cast<const VehiclePedalEvent&>(e));
+			break;
 		}
-		
+
 	}
 
 	void VehicleEventHandler::doHandleEvent(const VehicleMovedEvents& e)
@@ -29,6 +35,14 @@ namespace base {
 	}
 
 	void VehicleEventHandler::doHandleEvent(const VehicleDirectionEvent& e)
+	{
+	}
+
+	void VehicleEventHandler::doHandleEvent(const VehicleTurnEvent& e)
+	{
+	}
+
+	void VehicleEventHandler::doHandleEvent(const VehiclePedalEvent& e)
 	{
 	}
 

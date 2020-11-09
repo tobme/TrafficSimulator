@@ -39,7 +39,7 @@ namespace base {
 		//auto config = instance.m_spConfig;
 
 		auto mapParser = MapParser("Maps/Config.txt", &instance.m_subscriber);
-		m_map = mapParser.getMap();
+		instance.m_map = mapParser.getMap();
 
 		auto& drawingItems = instance.m_drawingItems;
 		std::sort(drawingItems.begin(), drawingItems.end(), [](const DrawableShape* lhs, const DrawableShape* rhs)
