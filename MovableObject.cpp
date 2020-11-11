@@ -18,11 +18,13 @@ namespace object {
 			, m_config()
 			, m_pSubscriber(pSubscriber)
 			, m_speed(0)
+			, m_turningSpeed(0)
+			, m_rotationAngle(0)
 		{
-			VehicleMovedEvents e = VehicleMovedEvents(name, sf::Vector2f(123,0));
 			pSubscriber->subscribe(event::VehicleMoveSubscription, this);
-			pSubscriber->subscribe(event::VehicleTurnSubscription, this);
+			pSubscriber->subscribe(event::VehicleSetTurnSubscription, this);
 			pSubscriber->subscribe(event::VehiclePedalSubscription, this);
+			pSubscriber->subscribe(event::VehicleTurningSubscription, this);
 		}
 
 
@@ -43,23 +45,90 @@ namespace object {
 
 		}
 
+		void MovableObject::setNewDirection()
+		{
+			int currentVal = m_config.direction;
+
+			// @todo Override operator instead
+			if (m_config.dirState == DirectionState::TURNING_LEFT)
+			{
+				currentVal--;
+			}
+			else
+			{
+				currentVal++;
+			}
+
+			if (currentVal < 0)
+				currentVal = 3;
+			else if (currentVal > 3)
+				currentVal = 3;
+
+		    m_config.direction = static_cast<Direction>(currentVal);
+		}
+
+		bool MovableObject::checkIfFinishedTurning()
+		{
+			if (m_rotationAngle >= 90.0f)
+			{
+				setNewDirection();
+				m_config.dirState = DirectionState::STANDARD;
+				m_config.turnState = TurnState::GO_FORWARD;
+				m_rotationAngle = 0.0f;
+				return true;
+			}
+			return false;
+		}
+
+		float MovableObject::getTurningSpeed()
+		{
+			//! For now set m_speed to static during turns
+			//! For future, make brake dynamic
+			if (m_config.dirState == DirectionState::STANDARD)
+			{
+				return 0.0f;
+			}
+
+			if (checkIfFinishedTurning())
+				return 0.0f;
+
+			auto pShape = getShape();
+
+			m_speed = 1.0f;
+			m_rotationAngle += 2.0;
+
+			if (m_config.dirState == DirectionState::TURNING_LEFT)
+			{
+				pShape->rotate(-2.0f);
+				return 2.0f;
+			}
+			else
+			{
+				pShape->rotate(2.0f);
+				return -2.0f;
+			}
+			
+		}
+
 		void MovableObject::move()
 		{
 			auto pShape = getShape();
 
+			m_turningSpeed = getTurningSpeed();
+
 			switch (m_config.direction)
 			{
 			case Direction::EAST:
-				pShape->move(m_speed, 0);
+				pShape->move(m_speed, -m_turningSpeed);
 				break;
 			case Direction::NORTH:
-				pShape->move(0, -m_speed);
+				pShape->move(-m_turningSpeed, -m_speed);
 				break;
 			case Direction::SOUTH:
-				pShape->move(0, m_speed);
+				pShape->move(m_turningSpeed, m_speed);
 				break;
 			case Direction::WEST:
-				pShape->move(-m_speed, 0);
+				pShape->move(-m_speed, m_turningSpeed);
 				break;
 			}
 		}
@@ -73,7 +142,7 @@ namespace object {
 
 		void MovableObject::updateCarSpeed()
 		{
-			if (m_config.state == State::GAS)
+			if (m_config.state == PedalState::GAS)
 			{
 				m_speed += m_config.accMultiplier;
 				m_speed = std::min(m_speed, (float)m_config.maxSpeed);
@@ -83,7 +152,7 @@ namespace object {
 				m_speed -= m_config.decMultiplier;
 				// If break, set lowest speed to make sure it doesnt stop before turn
 
-				if (m_config.state == State::BREAK)
+				if (m_config.state == PedalState::BREAK)
 				{
 					m_speed = std::max(m_speed, 1.0f);
 				}
@@ -104,11 +173,11 @@ namespace object {
 		{
 		}
 
-		void MovableObject::doHandleEvent(const event::VehicleTurnEvent& e)
+		void MovableObject::doHandleEvent(const event::VehicleSetTurnEvent& e)
 		{
 			if (e.getName() == getName())
 			{
-				std::cout << "Setting turn state" << std::endl;
+				std::cout << "Setting turn state " << e.newTurnState << std::endl;
 				m_config.turnState = e.newTurnState;
 			}
 
@@ -118,8 +187,17 @@ namespace object {
 		{
 			if (e.getName() == getName())
 			{
-				std::cout << "Setting pedal state" << std::endl;
+				std::cout << "Setting pedal state " << e.newPedalState << std::endl;
 				m_config.state = e.newPedalState;
+			}
+		}
+
+		void MovableObject::doHandleEvent(const event::VehicleTurningEvent& e)
+		{
+			if (e.getName() == getName())
+			{
+				std::cout << "Setting dir state " << e.newDirState << std::endl;
+				m_config.dirState = e.newDirState;
 			}
 		}
 		

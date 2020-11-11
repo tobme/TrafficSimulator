@@ -20,6 +20,7 @@ namespace object {
 			struct Config {
 				IMovingAssistant* m_pCarMovingStateAssistant;
 				IMovingAssistant* m_pCarPedalAssistant;
+				IMovingAssistant* m_pCarTurningAssistant;
 			};
 
 			CarSimulator(const std::string& name,
@@ -35,6 +36,7 @@ namespace object {
 			base::Subscriber* m_pSubscriber;
 			IMovingAssistant* m_pCarMovingStateAssistant;
 			IMovingAssistant* m_pCarPedalAssistant;
+			IMovingAssistant* m_pCarTurningAssistant;
 		};
 
 	}

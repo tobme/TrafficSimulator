@@ -22,7 +22,7 @@ namespace object {
 		{
 			// First check if car has turn state active
 			// If so dont do anything
-			if (config.turnState != TurnState::FORWARD)
+			if (config.turnState != TurnState::GO_FORWARD)
 			{
 				return;
 			}
@@ -30,24 +30,26 @@ namespace object {
 
 			// Check if there are any other possible turns before road ends
 			// If so return
+			TurnState turnState = canTurn(config, pos);
 
 			// If not, then dispatch turn state
-			if (!canTurn(config, pos))
+			if (turnState != TurnState::GO_FORWARD)
 			{
-				//! @todo need to check which way to turn
-				VehicleTurnEvent e = VehicleTurnEvent(name, TurnState::TURN_LEFT);
+				VehicleSetTurnEvent e = VehicleSetTurnEvent(name, turnState);
 				m_pSubscriber->dispatchEvent(e);
 			}
 
 
 		}
-		bool CarMovingStateAssistant::canTurn(const CarConfig& config, const sf::Vector2f& pos)
+		TurnState CarMovingStateAssistant::canTurn(const CarConfig& config, const sf::Vector2f& pos)
 		{
 			sf::Vector2f temp = pos;
 			sf::Vector2f nextMove = pos;
-			sf::Vector2f isWalkable1;
-			sf::Vector2f isWalkable2;
-			sf::Vector2f isBlocked;
+			sf::Vector2f checkUpRight = pos;
+			sf::Vector2f isWalkableToTheLeft;
+			sf::Vector2f isWalkableToTheRight;
+			sf::Vector2f isBlockedRight;
+			sf::Vector2f isBlockedLeft;
 
 			while (m_map.isWalkable(temp))
 			{
@@ -55,29 +57,40 @@ namespace object {
 				{
 				case Direction::EAST:
 					nextMove.x += PROP_SIZE;
+					checkUpRight.x += PROP_SIZE * 2;
 					break;
 				case Direction::NORTH:
 					nextMove.y -= PROP_SIZE;
+					checkUpRight.y -= PROP_SIZE * 2;
 					break;
 				case Direction::SOUTH:
 					nextMove.y += PROP_SIZE;
+					checkUpRight.y += PROP_SIZE * 2;
 					break;
 				case Direction::WEST:
 					nextMove.x -= PROP_SIZE;
+					checkUpRight.x -= PROP_SIZE * 2;
 					break;
 				}
-				isBlocked = m_map.toTheUp(nextMove, config.direction);
-				isWalkable1 = m_map.toTheLeft(temp, config.direction);
-				isWalkable2 = m_map.toTheRight(temp, config.direction);
+				isBlockedRight = m_map.toTheUp(checkUpRight, config.direction);
+				isBlockedLeft = m_map.toTheUp(nextMove, config.direction);
+				isWalkableToTheLeft = m_map.toTheLeft(temp, config.direction);
+				isWalkableToTheRight = m_map.toTheRight(temp, config.direction);
 
-				if ((m_map.isWalkable(isWalkable1) || m_map.isWalkable(isWalkable2)) && m_map.isWalkable(isBlocked))
-					return true;
+				if (m_map.isWalkable(isWalkableToTheRight) && !m_map.isWalkable(isBlockedRight))
+				{
+					return TurnState::TURN_NEXT_RIGHT;
+				}
+				else if (m_map.isWalkable(isWalkableToTheLeft) && !m_map.isWalkable(isBlockedLeft))
+				{
+					return TurnState::TURN_NEXT_LEFT;
+				}
 
+				checkUpRight = nextMove;
 				temp = nextMove;
-
 			}
 
-			return false;
+			return TurnState::GO_FORWARD;
 		}
 	}
 }

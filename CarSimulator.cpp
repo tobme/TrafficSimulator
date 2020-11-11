@@ -18,6 +18,7 @@ namespace object {
 			, m_pSubscriber(pSubscriber)
 			, m_pCarMovingStateAssistant(config.m_pCarMovingStateAssistant)
 			, m_pCarPedalAssistant(config.m_pCarPedalAssistant)
+			, m_pCarTurningAssistant(config.m_pCarTurningAssistant)
 		{
 			m_pSubscriber->subscribe(GPSUpdateSubscription, this);
 		}
@@ -38,7 +39,7 @@ namespace object {
 
 			m_pCarPedalAssistant->updateState(name, config, pos);
 
-			
+			m_pCarTurningAssistant->updateState(name, config, pos);
 		}
 
 		// NEEDED? doHandle and trigger work on different threads

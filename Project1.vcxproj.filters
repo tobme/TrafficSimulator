@@ -165,6 +165,9 @@
     <ClCompile Include="CarPedalAssistant.cpp">
       <Filter>Source Files\Objects\Cars</Filter>
     </ClCompile>
+    <ClCompile Include="TurningStateAssistant.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDrawableShape.h">
@@ -288,6 +291,9 @@
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
     <ClInclude Include="CarPedalAssistant.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="TurningStateAssistant.h">
       <Filter>Header Files\Objects\Cars</Filter>
     </ClInclude>
   </ItemGroup>

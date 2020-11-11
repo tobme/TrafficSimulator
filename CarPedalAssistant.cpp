@@ -22,19 +22,19 @@ namespace object {
 		void CarPedalAssistant::updateState(const std::string& name, const CarConfig& config, const sf::Vector2f& pos)
 		{
 			//! Check for turn
-			if (config.turnState != TurnState::FORWARD)
+			if (config.turnState != TurnState::GO_FORWARD)
 			{
 				//! If turning and close to turn hit brake pedal
-				if (config.state == State::GAS && closeToTurn(config, pos))
+				if (config.state == PedalState::GAS && closeToTurn(config, pos))
 				{
-					VehiclePedalEvent e = VehiclePedalEvent(name, State::BREAK);
+					VehiclePedalEvent e = VehiclePedalEvent(name, PedalState::BREAK);
 					m_pSubscriber->dispatchEvent(e);
 				}
 			}
-			else if (config.state != State::GAS)
+			else if (config.state != PedalState::GAS)
 			{
 				//! If not turning and not gasing hit gas.
-				VehiclePedalEvent e = VehiclePedalEvent(name, State::GAS);
+				VehiclePedalEvent e = VehiclePedalEvent(name, PedalState::GAS);
 				m_pSubscriber->dispatchEvent(e);
 			}
 
@@ -66,7 +66,7 @@ namespace object {
 					break;
 				}
 
-				if (config.turnState == TurnState::TURN_LEFT)
+				if (config.turnState == TurnState::TURN_NEXT_LEFT)
 				{
 					turnPos = m_map.toTheLeft(temp, config.direction);
 

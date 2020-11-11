@@ -8,17 +8,22 @@
 namespace object {
 	namespace cars {
 
-		class CarMovingStateAssistant : public IMovingAssistant {
+		class TurningStateAssistant : public IMovingAssistant {
 		public:
-			CarMovingStateAssistant(const std::string& name,
+			TurningStateAssistant(const std::string& name,
 				base::Subscriber* pSubscriber,
 				const map::Map& map);
-			~CarMovingStateAssistant() = default;
+			~TurningStateAssistant() = default;
 
 			void updateState(const std::string& name, const CarConfig& config, const sf::Vector2f& pos) override;
 
 		private:
-			object::cars::TurnState canTurn(const CarConfig& config, const sf::Vector2f& pos);
+
+			void Turn(const std::string& name,
+				const CarConfig& config,
+				const sf::Vector2f& pos,
+				const sf::Vector2f& (::map::Map::* func)(const sf::Vector2f&, Direction) const,
+				object::cars::DirectionState dirState);
 
 			base::Subscriber* m_pSubscriber;
 			map::Map m_map;

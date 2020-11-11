@@ -33,13 +33,8 @@ namespace map {
 
 	bool Map::isWalkable(const sf::Vector2f& pos) const
 	{
-		std::cout << "isWakableeee " << pos.x << " " << pos.y << std::endl;
 		if (pos.x < 0 || pos.y < 0 || pos.x / 50 > m_width || pos.y / 50 > m_height)
 		{
-			//std::cout << "X" << pos.x << " Y " << pos.y << std::endl;
-			//std::cout << "X / 50" << pos.x / 50 << " Y / 50" << pos.y / 50 << std::endl;
-			//std::cout << "Width " << m_width << " height " << m_height << std::endl;
-			//std::cout << "Here232" << std::endl;
 			return false;
 		}
 

@@ -36,7 +36,6 @@ namespace base {
 		//! Override this function if you want your object to be wakable.
 		virtual bool isWalkable() const override
 		{
-			std::cout << "here" << std::endl;
 			return false;
 		}
 

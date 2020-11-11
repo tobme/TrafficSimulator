@@ -19,9 +19,13 @@ void deployment::deployCars()
 	auto pCarPedalAssistant = createCarPedalAssistant("CarPedalAssistant", pSubscriber, map);
 	addItem(pCarPedalAssistant->getName(), pCarMovingStateAssistant, true);
 
+	auto pCarTurningAssistant = createTurningStateAssistant("CarTurningAssistant", pSubscriber, map);
+	addItem(pCarTurningAssistant->getName(), pCarTurningAssistant, true);
+
 	CarSimulator::Config config;
 	config.m_pCarMovingStateAssistant = pCarMovingStateAssistant;
 	config.m_pCarPedalAssistant = pCarPedalAssistant;
+	config.m_pCarTurningAssistant = pCarTurningAssistant;
 
 	addItem("CarSimulator",
 		createCarSimulator("CarSimulator", map, pSubscriber, config), true);

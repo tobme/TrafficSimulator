@@ -29,8 +29,9 @@ namespace object {
 
 			void doHandleEvent(const event::VehicleMovedEvents& e) override;
 			void doHandleEvent(const event::VehicleDirectionEvent& e) override;
-			void doHandleEvent(const event::VehicleTurnEvent& e) override;
+			void doHandleEvent(const event::VehicleSetTurnEvent& e) override;
 			void doHandleEvent(const event::VehiclePedalEvent& e) override;
+			void doHandleEvent(const event::VehicleTurningEvent& e) override;
 		private:
 
 			void move();
@@ -39,9 +40,17 @@ namespace object {
 
 			void updateCarSpeed();
 
+			float getTurningSpeed();
+
+			bool checkIfFinishedTurning();
+
+			void setNewDirection();
+
 			CarConfig m_config;
 			base::Subscriber* m_pSubscriber;
 			float m_speed;
+			float m_turningSpeed;
+			float m_rotationAngle;
 		};
 	}
 }

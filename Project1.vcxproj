@@ -156,6 +156,7 @@
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TriggerConnector.cpp" />
     <ClCompile Include="TriggerFactory.cpp" />
+    <ClCompile Include="TurningStateAssistant.cpp" />
     <ClCompile Include="WalkableProp.cpp" />
     <ClCompile Include="VehicleEventHandler.cpp" />
     <ClCompile Include="World.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TriggerConnector.h" />
     <ClInclude Include="TriggerFactory.h" />
+    <ClInclude Include="TurningStateAssistant.h" />
     <ClInclude Include="WalkableProp.h" />
     <ClInclude Include="VehicleEventHandler.h" />
     <ClInclude Include="World.h" />
