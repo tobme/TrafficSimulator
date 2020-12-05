@@ -65,13 +65,17 @@ namespace base {
 	{
 		if (add)
 		{
-
 			auto& world = World::getInstance();
 			world.m_items[name] = std::unique_ptr<IObject>(object);
 
 			if (auto it = dynamic_cast<const DrawableShape*>(object))
 			{
 				world.m_drawingItems.push_back(it);
+
+				std::sort(world.m_drawingItems.begin(), world.m_drawingItems.end(), [](const DrawableShape * lhs, const DrawableShape * rhs)
+					{
+						return lhs > rhs;
+					});
 			}
 		}
 

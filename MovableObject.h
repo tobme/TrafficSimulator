@@ -46,6 +46,8 @@ namespace object {
 
 			void setNewDirection();
 
+			void setRotationPos();
+
 			CarConfig m_config;
 			base::Subscriber* m_pSubscriber;
 			float m_speed;

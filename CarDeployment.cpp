@@ -13,19 +13,11 @@ void deployment::deployCars()
 	auto pSubscriber = &World::getInstance().m_subscriber;
 	auto& map = World::getInstance().m_map;
 
-	auto pCarMovingStateAssistant = createCarMovingStateAssistant("CarMovingStateAssistant", pSubscriber, map);
-	addItem(pCarMovingStateAssistant->getName(), pCarMovingStateAssistant, true);
-
-	auto pCarPedalAssistant = createCarPedalAssistant("CarPedalAssistant", pSubscriber, map);
-	addItem(pCarPedalAssistant->getName(), pCarMovingStateAssistant, true);
-
-	auto pCarTurningAssistant = createTurningStateAssistant("CarTurningAssistant", pSubscriber, map);
-	addItem(pCarTurningAssistant->getName(), pCarTurningAssistant, true);
+	auto spIMovingAssistantHandler = createIMovingAssistantHandler(pSubscriber, map);
+	addItem(spIMovingAssistantHandler->getName(), spIMovingAssistantHandler.get(), true);
 
 	CarSimulator::Config config;
-	config.m_pCarMovingStateAssistant = pCarMovingStateAssistant;
-	config.m_pCarPedalAssistant = pCarPedalAssistant;
-	config.m_pCarTurningAssistant = pCarTurningAssistant;
+	config.spIMovingAssistantHandler = spIMovingAssistantHandler;
 
 	addItem("CarSimulator",
 		createCarSimulator("CarSimulator", map, pSubscriber, config), true);

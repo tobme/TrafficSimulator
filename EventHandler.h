@@ -9,7 +9,7 @@ namespace base {
 	class EventHandler : public IEventHandler
 	{
 	public:
-		EventHandler() {}
+		EventHandler() = default;
 		virtual ~EventHandler() = default;
 
 		void handleEvent(const IEvent& e) override

@@ -22,7 +22,7 @@ namespace object {
 			void Turn(const std::string& name,
 				const CarConfig& config,
 				const sf::Vector2f& pos,
-				const sf::Vector2f& (::map::Map::* func)(const sf::Vector2f&, Direction) const,
+				const sf::Vector2f (::map::Map::* func)(const sf::Vector2f&, Direction) const,
 				object::cars::DirectionState dirState);
 
 			base::Subscriber* m_pSubscriber;

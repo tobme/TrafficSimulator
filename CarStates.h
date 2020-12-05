@@ -12,6 +12,7 @@ namespace object {
 		enum PedalState {
 			GAS,
 			BREAK,
+			STOP,
 			PARKED
 		};
 

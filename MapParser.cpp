@@ -46,7 +46,7 @@ namespace map {
 	}
 
 	MapParser::MapParser(const std::string& configName, Subscriber* pSubscriber)
-		: m_map(18, 32)
+		: m_map(16, 18)
 	{
 		ifstream mapFile = getMapStream(configName);
 

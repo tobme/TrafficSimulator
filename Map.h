@@ -22,10 +22,10 @@ namespace map {
 		void add(unsigned int x, unsigned int y, T item);
 		bool isWalkable(const sf::Vector2f& pos) const;
 
-		const sf::Vector2f& toTheLeft(const sf::Vector2f& pos, object::cars::Direction dir) const;
-		const sf::Vector2f& toTheRight(const sf::Vector2f& pos, object::cars::Direction dir) const;
-		const sf::Vector2f& toTheUp(const sf::Vector2f& pos, object::cars::Direction dir) const;
-		const sf::Vector2f& toTheDown(const sf::Vector2f& pos, object::cars::Direction dir) const;
+		const sf::Vector2f toTheLeft(const sf::Vector2f& pos, object::cars::Direction dir) const;
+		const sf::Vector2f toTheRight(const sf::Vector2f& pos, object::cars::Direction dir) const;
+		const sf::Vector2f toTheUp(const sf::Vector2f& pos, object::cars::Direction dir) const;
+		const sf::Vector2f toTheDown(const sf::Vector2f& pos, object::cars::Direction dir) const;
 	private:
 		using PropMap = std::vector< std::vector<base::IObject*> >;
 

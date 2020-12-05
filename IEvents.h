@@ -9,7 +9,8 @@ namespace base {
 		GPS_UPDATE,
 		VEHICLE_SET_TURN,
 		VEHICLE_PEDAL,
-		VEHICLE_TURNING
+		VEHICLE_TURNING,
+		VEHICLE_CREATED
 	};
 
 	class IEvent {

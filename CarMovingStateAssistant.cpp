@@ -41,6 +41,7 @@ namespace object {
 
 
 		}
+
 		TurnState CarMovingStateAssistant::canTurn(const CarConfig& config, const sf::Vector2f& pos)
 		{
 			sf::Vector2f temp = pos;
@@ -77,13 +78,19 @@ namespace object {
 				isWalkableToTheLeft = m_map.toTheLeft(temp, config.direction);
 				isWalkableToTheRight = m_map.toTheRight(temp, config.direction);
 
-				if (m_map.isWalkable(isWalkableToTheRight) && !m_map.isWalkable(isBlockedRight))
+				if (m_map.isWalkable(isWalkableToTheRight))
 				{
-					return TurnState::TURN_NEXT_RIGHT;
+					if (!m_map.isWalkable(isBlockedRight))
+						return TurnState::TURN_NEXT_RIGHT;
+					else
+						return TurnState::GO_FORWARD;
 				}
-				else if (m_map.isWalkable(isWalkableToTheLeft) && !m_map.isWalkable(isBlockedLeft))
+				else if (m_map.isWalkable(isWalkableToTheLeft))
 				{
-					return TurnState::TURN_NEXT_LEFT;
+					if (!m_map.isWalkable(isBlockedLeft))
+						return TurnState::TURN_NEXT_LEFT;
+					else
+						return TurnState::GO_FORWARD;
 				}
 
 				checkUpRight = nextMove;

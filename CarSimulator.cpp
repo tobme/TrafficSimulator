@@ -16,9 +16,7 @@ namespace object {
 			, IObject(name)
 			, m_map(map)
 			, m_pSubscriber(pSubscriber)
-			, m_pCarMovingStateAssistant(config.m_pCarMovingStateAssistant)
-			, m_pCarPedalAssistant(config.m_pCarPedalAssistant)
-			, m_pCarTurningAssistant(config.m_pCarTurningAssistant)
+			, m_spIMovingAssistantHandler(config.spIMovingAssistantHandler)
 		{
 			m_pSubscriber->subscribe(GPSUpdateSubscription, this);
 		}
@@ -31,15 +29,8 @@ namespace object {
 			auto& pos = event.position;
 			auto& config = event.config;
 
-			//! Checks so the car doesn't leave road
-			//! 
-			//! If there are no turns available, then the assistant sets
-			//! the cars turn state.
-			m_pCarMovingStateAssistant->updateState(name, config, pos);
-
-			m_pCarPedalAssistant->updateState(name, config, pos);
-
-			m_pCarTurningAssistant->updateState(name, config, pos);
+			//! Updates all of the moving assistants.
+			m_spIMovingAssistantHandler->updateAssistants(name, config, pos);
 		}
 
 		// NEEDED? doHandle and trigger work on different threads

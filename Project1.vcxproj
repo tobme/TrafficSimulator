@@ -134,6 +134,8 @@
     <ClCompile Include="CarMovingStateAssistant.cpp" />
     <ClCompile Include="CarPedalAssistant.cpp" />
     <ClCompile Include="CarSimulator.cpp" />
+    <ClCompile Include="CarTracker.cpp" />
+    <ClCompile Include="CarTrackerFactory.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -147,6 +149,7 @@
     <ClCompile Include="CarFactory.cpp" />
     <ClCompile Include="DeploymentMaster.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovingAssistantHandler.cpp" />
     <ClCompile Include="Prop.cpp" />
     <ClCompile Include="PropFactory.cpp" />
     <ClCompile Include="Road.cpp" />
@@ -166,14 +169,18 @@
     <ClInclude Include="CarPedalAssistant.h" />
     <ClInclude Include="CarSimulator.h" />
     <ClInclude Include="CarStates.h" />
+    <ClInclude Include="CarTracker.h" />
+    <ClInclude Include="CarTrackerFactory.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSubription.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="ICarTracker.h" />
     <ClInclude Include="IConfig.h" />
     <ClInclude Include="IEventHandler.h" />
     <ClInclude Include="IEvents.h" />
     <ClInclude Include="IMovingAssistant.h" />
+    <ClInclude Include="IMovingAssistantHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MapParser.h" />
@@ -188,6 +195,7 @@
     <ClInclude Include="IDrawableShape.h" />
     <ClInclude Include="IObject.h" />
     <ClInclude Include="ITriggable.h" />
+    <ClInclude Include="MovingAssistantHandler.h" />
     <ClInclude Include="MutlipleEventWrapper.h" />
     <ClInclude Include="Prop.h" />
     <ClInclude Include="PropFactory.h" />
@@ -201,6 +209,7 @@
     <ClInclude Include="TriggerConnector.h" />
     <ClInclude Include="TriggerFactory.h" />
     <ClInclude Include="TurningStateAssistant.h" />
+    <ClInclude Include="VehicleCreatedEvents.h" />
     <ClInclude Include="WalkableProp.h" />
     <ClInclude Include="VehicleEventHandler.h" />
     <ClInclude Include="World.h" />

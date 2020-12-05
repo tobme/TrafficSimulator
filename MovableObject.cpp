@@ -1,5 +1,6 @@
 #include "MovableObject.h"
 #include "EventSubription.h"
+#include "VehicleCreatedEvents.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -25,6 +26,8 @@ namespace object {
 			pSubscriber->subscribe(event::VehicleSetTurnSubscription, this);
 			pSubscriber->subscribe(event::VehiclePedalSubscription, this);
 			pSubscriber->subscribe(event::VehicleTurningSubscription, this);
+
+			pSubscriber->dispatchEvent(VehicleCreated(name, pos));
 		}
 
 
@@ -32,17 +35,33 @@ namespace object {
 		{
 		}
 
+		//! The position has it's origin in top left corner.
+		//! Convert it to the front left corner instead.
+		sf::Vector2f getRotationalForwardPos(const sf::Vector2f& pos, const CarConfig& m_config)
+		{
+			switch (m_config.direction)
+			{
+			case Direction::EAST:
+				return sf::Vector2f(pos.x + 50, pos.y);
+			case Direction::NORTH:
+			case Direction::WEST:
+				return pos;
+			case Direction::SOUTH:
+				return sf::Vector2f(pos.x, pos.y + 50);
+			}
+			return pos;
+		}
+		
+
 		//! Start the chain by updating it's GPS signal
 		void MovableObject::updateTrigger()
 		{
-			auto shape = getShape();
-			auto pos = shape->getPosition();
+			auto pos = getRotationalForwardPos(getShape()->getPosition(), m_config);
 
 			updateCar();
 
 			GPSUpdateEvent event = GPSUpdateEvent(getName(), pos, m_config);
 			m_pSubscriber->dispatchEvent<GPSUpdateEvent>(event);
-
 		}
 
 		void MovableObject::setNewDirection()
@@ -62,7 +81,7 @@ namespace object {
 			if (currentVal < 0)
 				currentVal = 3;
 			else if (currentVal > 3)
-				currentVal = 3;
+				currentVal = 0;
 
 		    m_config.direction = static_cast<Direction>(currentVal);
 		}
@@ -80,6 +99,45 @@ namespace object {
 			return false;
 		}
 
+		void MovableObject::setRotationPos()
+		{
+			if (m_rotationAngle == 0.0f)
+			{
+				auto pos = getShape()->getPosition();
+
+				auto partX = (int)pos.x % 50;
+				auto partY = (int)pos.y % 50;
+
+				int newPosX(0);
+				int newPosY(0);
+
+				if (partX > 25)
+				{
+					newPosX = (int)pos.x + (50 - partX);
+				}
+				else
+				{
+					newPosX = (int)pos.x - partX;
+				}
+
+				if (partY > 25)
+				{
+					newPosY = (int)pos.y + (50 - partY);
+				}
+				else
+				{
+					newPosY = (int)pos.y - partY;
+				}
+
+				setTopLeftPos(newPosX, newPosY);
+
+				std::cout << "setting pos" << "pos x" << getTopLeftPos().x << " pos y " << getTopLeftPos().y << std::endl;
+
+			}
+		}
+
+		int turningindex(0);
+
 		float MovableObject::getTurningSpeed()
 		{
 			//! For now set m_speed to static during turns
@@ -89,23 +147,27 @@ namespace object {
 				return 0.0f;
 			}
 
-			if (checkIfFinishedTurning())
-				return 0.0f;
-
 			auto pShape = getShape();
 
-			m_speed = 1.0f;
-			m_rotationAngle += 2.0;
+			setRotationPos();
+
+			if (checkIfFinishedTurning())
+			{
+				return 0.0f;
+			}
+
+			m_speed = 2.5f;
+			m_rotationAngle += 4.5;
 
 			if (m_config.dirState == DirectionState::TURNING_LEFT)
 			{
-				pShape->rotate(-2.0f);
-				return 2.0f;
+				pShape->rotate(-4.5f);
+				return 0.5f;
 			}
 			else
 			{
-				pShape->rotate(2.0f);
-				return -2.0f;
+				pShape->rotate(4.5f);
+				return -0.5f;
 			}
 			
 		}
@@ -180,7 +242,6 @@ namespace object {
 				std::cout << "Setting turn state " << e.newTurnState << std::endl;
 				m_config.turnState = e.newTurnState;
 			}
-
 		}
 
 		void MovableObject::doHandleEvent(const event::VehiclePedalEvent& e)

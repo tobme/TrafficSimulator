@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Shapes\Road">
       <UniqueIdentifier>{eda727fa-fe1f-4abf-af51-ecfaf89dea26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Objects\Tracker">
+      <UniqueIdentifier>{e5229278-8242-4a6b-8b4d-7b4b14939b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Tracker">
+      <UniqueIdentifier>{a04c6f99-c8a4-45d8-919b-5e5c5e2e6612}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -167,6 +173,15 @@
     </ClCompile>
     <ClCompile Include="TurningStateAssistant.cpp">
       <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingAssistantHandler.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CarTracker.cpp">
+      <Filter>Source Files\Objects\Tracker</Filter>
+    </ClCompile>
+    <ClCompile Include="CarTrackerFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +310,24 @@
     </ClInclude>
     <ClInclude Include="TurningStateAssistant.h">
       <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingAssistantHandler.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovingAssistantHandler.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="VehicleCreatedEvents.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="CarTracker.h">
+      <Filter>Header Files\Objects\Tracker</Filter>
+    </ClInclude>
+    <ClInclude Include="ICarTracker.h">
+      <Filter>Header Files\Objects\Tracker</Filter>
+    </ClInclude>
+    <ClInclude Include="CarTrackerFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

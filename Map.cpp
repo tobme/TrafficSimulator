@@ -33,14 +33,14 @@ namespace map {
 
 	bool Map::isWalkable(const sf::Vector2f& pos) const
 	{
-		if (pos.x < 0 || pos.y < 0 || pos.x / 50 > m_width || pos.y / 50 > m_height)
+		if (pos.x < 0 || pos.y < 0 || pos.x / 50 > m_width - 1 || pos.y / 50 > m_height - 1)
 		{
 			return false;
 		}
 
 		return posToDrawableObject(pos)->isWalkable();
 	}
-	constPosPair& Map::toTheLeft(constPosPair& pos, Direction dir) const
+	constPosPair Map::toTheLeft(constPosPair& pos, Direction dir) const
 	{
 		switch (dir)
 		{
@@ -61,7 +61,7 @@ namespace map {
 			break;
 		}
 	}
-	constPosPair& Map::toTheRight(constPosPair& pos, Direction dir) const
+	constPosPair Map::toTheRight(constPosPair& pos, Direction dir) const
 	{
 		switch (dir)
 		{
@@ -82,7 +82,7 @@ namespace map {
 			break;
 		}
 	}
-	constPosPair& Map::toTheUp(constPosPair& pos, Direction dir) const
+	constPosPair Map::toTheUp(constPosPair& pos, Direction dir) const
 	{
 		switch (dir)
 		{
@@ -103,7 +103,7 @@ namespace map {
 			break;
 		}
 	}
-	constPosPair& Map::toTheDown(constPosPair& pos, Direction dir) const
+	constPosPair Map::toTheDown(constPosPair& pos, Direction dir) const
 	{
 		switch (dir)
 		{

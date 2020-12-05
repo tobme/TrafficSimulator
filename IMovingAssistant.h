@@ -16,5 +16,7 @@ namespace object {
 
 			virtual void updateState(const std::string& name, const CarConfig& config, const sf::Vector2f& pos) = 0;
 		};
+
+		using IMovingAssistantSP = std::shared_ptr<IMovingAssistant>;
 	}
 }

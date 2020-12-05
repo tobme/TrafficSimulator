@@ -22,6 +22,7 @@ namespace base {
 		{
 			m_texture.loadFromFile(textureName);
 			dynamic_cast<sf::Shape*>(m_upShape.get())->setTexture(&m_texture, true);
+			dynamic_cast<sf::Shape*>(m_upShape.get())->setOrigin(25, 25);
 			dynamic_cast<sf::Shape*>(m_upShape.get())->setPosition(pos);
 		}
 
@@ -40,6 +41,18 @@ namespace base {
 		}
 
 		shapeT* getShape() { return m_upShape.get(); }
+
+		sf::Vector2f getTopLeftPos() const
+		{
+			sf::Vector2f pos(dynamic_cast<sf::Shape*>(m_upShape.get())->getPosition());
+
+			return sf::Vector2f(pos.x, pos.y);
+		}
+
+		void setTopLeftPos(float x, float y)
+		{
+			getShape()->setPosition(x, y);
+		}
 
 	private:
 		std::unique_ptr<shapeT> m_upShape;

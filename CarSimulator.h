@@ -7,7 +7,7 @@
 #include "ITriggable.h"
 #include "IObject.h"
 
-#include "IMovingAssistant.h"
+#include "IMovingAssistantHandler.h"
 
 namespace object {
 	namespace cars {
@@ -18,9 +18,7 @@ namespace object {
 		{
 		public:
 			struct Config {
-				IMovingAssistant* m_pCarMovingStateAssistant;
-				IMovingAssistant* m_pCarPedalAssistant;
-				IMovingAssistant* m_pCarTurningAssistant;
+				IMovingAssistantHandlerSP spIMovingAssistantHandler;
 			};
 
 			CarSimulator(const std::string& name,
@@ -34,9 +32,7 @@ namespace object {
 		private:
 			::map::Map m_map;
 			base::Subscriber* m_pSubscriber;
-			IMovingAssistant* m_pCarMovingStateAssistant;
-			IMovingAssistant* m_pCarPedalAssistant;
-			IMovingAssistant* m_pCarTurningAssistant;
+			IMovingAssistantHandlerSP m_spIMovingAssistantHandler;
 		};
 
 	}

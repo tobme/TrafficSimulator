@@ -9,4 +9,5 @@ namespace event
 	static const base::EventSpecifier VehicleSetTurnSubscription = base::EventSpecifier::VEHICLE_SET_TURN;
 	static const base::EventSpecifier VehiclePedalSubscription = base::EventSpecifier::VEHICLE_PEDAL;
 	static const base::EventSpecifier VehicleTurningSubscription = base::EventSpecifier::VEHICLE_TURNING;
+	static const base::EventSpecifier VehicleCreatedSubscription = base::EventSpecifier::VEHICLE_CREATED;
 }
