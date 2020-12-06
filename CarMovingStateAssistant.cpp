@@ -2,9 +2,13 @@
 #include "IDrawableObject.h"
 #include "MovableEvents.h"
 
+#include <random>
+
 using namespace base;
 using namespace event;
 using namespace map;
+
+using namespace std::chrono;
 
 namespace object {
 	namespace cars {
@@ -15,6 +19,9 @@ namespace object {
 			: IMovingAssistant(name)
 			, m_pSubscriber(pSubscriber)
 			, m_map(map)
+			, m_timeSinceLastCheck(high_resolution_clock::now())
+			, m_dev()
+			, m_rng(m_dev())
 		{
 
 		}
@@ -38,8 +45,38 @@ namespace object {
 				VehicleSetTurnEvent e = VehicleSetTurnEvent(name, turnState);
 				m_pSubscriber->dispatchEvent(e);
 			}
+		}
 
+		// If it's not the last turn it's a chance of 1/5 that it takes an earlier turn.
+		TurnState CarMovingStateAssistant::turnEarlier(TurnState turnState, TurnState turnChanceState)
+		{
+			high_resolution_clock::time_point currentTime(high_resolution_clock::now());
 
+			duration<double> time_span = duration_cast<duration<double>>(currentTime - m_timeSinceLastCheck);
+
+			m_timeSinceLastCheck = currentTime;
+
+			if (turnState != TurnState::GO_FORWARD || time_span.count() < 1.0)
+				return turnState;
+	
+			std::uniform_int_distribution<std::mt19937::result_type> dist6(1, 5);
+
+			if (dist6(m_rng) == 1)
+			{
+				return turnChanceState;
+			}
+			else
+			{
+				return TurnState::GO_FORWARD;
+			}
+		}
+
+		TurnState CarMovingStateAssistant::checkIfTurnIsOk(const sf::Vector2f& isBlocked, TurnState turnSignal)
+		{
+			if (!m_map.isWalkable(isBlocked))
+				return turnEarlier(turnSignal);
+			else
+				return turnEarlier(TurnState::GO_FORWARD, turnSignal);
 		}
 
 		TurnState CarMovingStateAssistant::canTurn(const CarConfig& config, const sf::Vector2f& pos)
@@ -78,19 +115,29 @@ namespace object {
 				isWalkableToTheLeft = m_map.toTheLeft(temp, config.direction);
 				isWalkableToTheRight = m_map.toTheRight(temp, config.direction);
 
-				if (m_map.isWalkable(isWalkableToTheRight))
+				std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
+
+				if (dist2(m_rng) == 1)
 				{
-					if (!m_map.isWalkable(isBlockedRight))
-						return TurnState::TURN_NEXT_RIGHT;
-					else
-						return TurnState::GO_FORWARD;
+					if (m_map.isWalkable(isWalkableToTheRight))
+					{
+						return checkIfTurnIsOk(isBlockedRight, TurnState::TURN_NEXT_RIGHT);
+					}
+					else if (m_map.isWalkable(isWalkableToTheLeft))
+					{
+						return checkIfTurnIsOk(isBlockedLeft, TurnState::TURN_NEXT_LEFT);					}
 				}
-				else if (m_map.isWalkable(isWalkableToTheLeft))
+				else
 				{
-					if (!m_map.isWalkable(isBlockedLeft))
-						return TurnState::TURN_NEXT_LEFT;
-					else
-						return TurnState::GO_FORWARD;
+					if (m_map.isWalkable(isWalkableToTheLeft))
+					{
+						return checkIfTurnIsOk(isBlockedLeft, TurnState::TURN_NEXT_LEFT);
+					}
+					else if (m_map.isWalkable(isWalkableToTheRight))
+					{
+						return checkIfTurnIsOk(isBlockedRight, TurnState::TURN_NEXT_RIGHT);
+					}
+
 				}
 
 				checkUpRight = nextMove;
