@@ -44,7 +44,7 @@ namespace base {
 		auto& drawingItems = instance.m_drawingItems;
 		std::sort(drawingItems.begin(), drawingItems.end(), [](const DrawableShape* lhs, const DrawableShape* rhs)
 			{
-				return lhs > rhs;
+				return isGreaterThan(lhs, rhs);
 			});
 
 		//config->setMap(mapParser.getMap());
@@ -74,7 +74,7 @@ namespace base {
 
 				std::sort(world.m_drawingItems.begin(), world.m_drawingItems.end(), [](const DrawableShape * lhs, const DrawableShape * rhs)
 					{
-						return lhs > rhs;
+						return isGreaterThan(lhs, rhs);
 					});
 			}
 		}

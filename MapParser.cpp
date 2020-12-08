@@ -23,7 +23,7 @@ namespace map {
 		auto pRoad = createVerticalRoad(name, pSubscriber, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y));
 		addItem(pRoad->getName(), pRoad, true);
 
-		Taxi* pTaxi = createTaxi(name, pSubscriber, sf::Vector2f(100 * x, 50 * y));
+		Taxi* pTaxi = createTaxi(name, pSubscriber, sf::Vector2f(50 * x, 50 * y));
 		addItem(pTaxi->getName(), pTaxi, true);
 
 		addMapItem<VerticalRoad*>(x, y, pRoad);
