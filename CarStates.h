@@ -33,6 +33,7 @@ namespace object {
 			PedalState state = PedalState::GAS;
 			TurnState turnState = TurnState::GO_FORWARD;
 			DirectionState dirState = DirectionState::STANDARD;
+			int turningSafeDistance = 0;
 			float accMultiplier = 0.1f;
 			int maxSpeed = 7;
 			float decMultiplier = 0.2f;

@@ -4,6 +4,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <thread>         // std::this_thread::sleep_for
+#include <chrono>         // std::chrono::seconds
+
 using namespace sf;
 using namespace base;
 using namespace event;
@@ -147,6 +150,8 @@ namespace object {
 				return 0.0f;
 			}
 
+			
+
 			auto pShape = getShape();
 
 			setRotationPos();
@@ -177,6 +182,9 @@ namespace object {
 			auto pShape = getShape();
 
 			m_turningSpeed = getTurningSpeed();
+
+			m_config.turningSafeDistance -= m_speed;
+			m_config.turningSafeDistance = std::max(0, m_config.turningSafeDistance);
 
 			switch (m_config.direction)
 			{
@@ -241,6 +249,7 @@ namespace object {
 			{
 				std::cout << "Setting turn state " << e.newTurnState << std::endl;
 				m_config.turnState = e.newTurnState;
+				m_config.turningSafeDistance = std::max(m_config.turningSafeDistance, 50);
 			}
 		}
 
@@ -259,6 +268,9 @@ namespace object {
 			{
 				std::cout << "Setting dir state " << e.newDirState << std::endl;
 				m_config.dirState = e.newDirState;
+
+				if (m_config.dirState == DirectionState::TURNING_LEFT)
+					m_config.turningSafeDistance = std::max(m_config.turningSafeDistance, 160);
 			}
 		}
 		

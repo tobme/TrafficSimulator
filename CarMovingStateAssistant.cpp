@@ -27,9 +27,10 @@ namespace object {
 		}
 		void CarMovingStateAssistant::updateState(const std::string& name, const CarConfig& config, const sf::Vector2f& pos)
 		{
+			std::cout << " config.turningSafeDistance " << config.turningSafeDistance << std::endl;
 			// First check if car has turn state active
 			// If so dont do anything
-			if (config.turnState != TurnState::GO_FORWARD)
+			if (config.turnState != TurnState::GO_FORWARD || config.turningSafeDistance != 0)
 			{
 				return;
 			}
@@ -117,7 +118,7 @@ namespace object {
 
 				std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 
-				if (dist2(m_rng) == 1)
+				if (dist2(m_rng) == 5)
 				{
 					if (m_map.isWalkable(isWalkableToTheRight))
 					{

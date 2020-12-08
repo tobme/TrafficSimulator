@@ -25,14 +25,32 @@ namespace object {
 
 			// If it isn't planning on turning or if it's already turning
 			// Return
-			if (config.turnState == TurnState::GO_FORWARD || config.dirState != DirectionState::STANDARD)
+			if (config.turnState == TurnState::GO_FORWARD || config.dirState != DirectionState::STANDARD || config.turningSafeDistance != 0)
 			{
 				return;
 			}
 
 			if (config.turnState == TurnState::TURN_NEXT_LEFT)
 			{
-				Turn(name, config, pos, &Map::toTheLeft, DirectionState::TURNING_LEFT);
+				sf::Vector2f temp = pos;
+
+				switch (config.direction)
+				{
+				case Direction::EAST:
+					temp.x -= PROP_SIZE;
+					break;
+				case Direction::NORTH:
+					temp.y += PROP_SIZE;
+					break;
+				case Direction::SOUTH:
+					temp.y -= PROP_SIZE;
+					break;
+				case Direction::WEST:
+					temp.x += PROP_SIZE;
+					break;
+				}
+
+				Turn(name, config, temp, &Map::toTheLeft, DirectionState::TURNING_LEFT);
 			}
 			else
 			{
@@ -47,30 +65,12 @@ namespace object {
 			const sf::Vector2f (Map::*func)(const sf::Vector2f&, Direction) const,
 			DirectionState dirState)
 		{
-			sf::Vector2f temp = pos;
 			sf::Vector2f isWalkable;
 
-			//switch (config.direction)
-			//{
-			//case Direction::EAST:
-			//	temp.x += PROP_SIZE;
-			//	break;
-			//case Direction::NORTH:
-			//	temp.y -= PROP_SIZE;
-			//	break;
-			//case Direction::SOUTH:
-			//	temp.y += PROP_SIZE;
-			//	break;
-			//case Direction::WEST:
-			//	temp.x -= PROP_SIZE;
-			//	break;
-			//}
-
-			isWalkable = (m_map.*func)(temp, config.direction);
+			isWalkable = (m_map.*func)(pos, config.direction);
 
 			if (m_map.isWalkable(isWalkable))
 			{
-
 				VehicleTurningEvent e = VehicleTurningEvent(name, dirState);
 				m_pSubscriber->dispatchEvent(e);
 			}
