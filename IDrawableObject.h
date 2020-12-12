@@ -23,7 +23,7 @@ namespace base {
 			m_texture.loadFromFile(textureName);
 			dynamic_cast<sf::Shape*>(m_upShape.get())->setTexture(&m_texture, true);
 			dynamic_cast<sf::Shape*>(m_upShape.get())->setOrigin(25, 25);
-			dynamic_cast<sf::Shape*>(m_upShape.get())->setPosition(pos);
+			dynamic_cast<sf::Shape*>(m_upShape.get())->setPosition(sf::Vector2f(pos.x + 25, pos.y + 25));
 		}
 
 		virtual ~IDrawableObject() = default;
@@ -46,12 +46,12 @@ namespace base {
 		{
 			sf::Vector2f pos(dynamic_cast<sf::Shape*>(m_upShape.get())->getPosition());
 
-			return sf::Vector2f(pos.x, pos.y);
+			return sf::Vector2f(pos.x - 25, pos.y - 25);
 		}
 
 		void setTopLeftPos(float x, float y)
 		{
-			getShape()->setPosition(x, y);
+			getShape()->setPosition(x + 25, y + 25);
 		}
 
 	private:

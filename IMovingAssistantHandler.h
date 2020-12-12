@@ -18,4 +18,5 @@ namespace object {
 	};
 
 	using IMovingAssistantHandlerSP = std::shared_ptr<IMovingAssistantHandler>;
+	using IMovingAssistantHandlerUP = std::unique_ptr<IMovingAssistantHandler>;
 }

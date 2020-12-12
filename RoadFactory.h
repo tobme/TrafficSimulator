@@ -7,6 +7,6 @@
 
 namespace factory {
 
-	road::VerticalRoad* createVerticalRoad(const std::string& name,
+	std::unique_ptr<road::VerticalRoad> createVerticalRoad(const std::string& name,
 		base::Subscriber* subscriber, const sf::Vector2f& pos);
 }

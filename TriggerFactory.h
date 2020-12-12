@@ -3,5 +3,5 @@
 #include "Trigger.h"
 
 namespace factory {
-	base::Trigger* createTrigger();
+	std::unique_ptr<base::Trigger> createTrigger();
 }

@@ -7,8 +7,8 @@ using namespace ::object::tracker;
 using namespace ::base;
 
 namespace factory {
-	ICarTrackerSP createCarTracker(const std::string& name, Subscriber* pSubscriber)
+	ICarTrackerUP createCarTracker(const std::string& name, Subscriber* pSubscriber)
 	{
-		return std::make_shared<CarTracker>(name, pSubscriber);
+		return std::make_unique<CarTracker>(name, pSubscriber);
 	}
 }

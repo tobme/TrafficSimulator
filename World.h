@@ -17,6 +17,8 @@ namespace base {
 	{
 	public:
 		World(World const&) = delete;
+		~World() = default;
+
 		void operator=(World const&) = delete;
 
 		static World& getInstance();
@@ -35,7 +37,7 @@ namespace base {
 
 	};
 
-	void addItem(const std::string& name, base::IObject* object, bool add);
+	void addItem(const std::string& name, std::unique_ptr<base::IObject> object, bool add);
 
 	template<typename T>
 	static inline T* World::getItem(const std::string& name)

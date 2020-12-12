@@ -14,10 +14,12 @@ void deployment::deployCars()
 	auto& map = World::getInstance().m_map;
 
 	auto spIMovingAssistantHandler = createIMovingAssistantHandler(pSubscriber, map);
-	addItem(spIMovingAssistantHandler->getName(), spIMovingAssistantHandler.get(), true);
+	std::string assistantName(spIMovingAssistantHandler->getName());
 
 	CarSimulator::Config config;
-	config.spIMovingAssistantHandler = spIMovingAssistantHandler;
+	config.spIMovingAssistantHandler = static_cast<object::IMovingAssistantHandlerSP>(spIMovingAssistantHandler.get());
+
+	addItem(assistantName, std::move(spIMovingAssistantHandler), true);
 
 	addItem("CarSimulator",
 		createCarSimulator("CarSimulator", map, pSubscriber, config), true);

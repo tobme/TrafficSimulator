@@ -6,13 +6,13 @@ namespace factory {
 
 	namespace {
 		template<typename T>
-		T* createProp(const std::string& name, const sf::Vector2f& pos)
+		std::unique_ptr<T> createProp(const std::string& name, const sf::Vector2f& pos)
 		{
-			return new T(name, pos);
+			return std::make_unique<T>(name, pos);
 		}
 	}
 
-	Grass* createGrass(const std::string& name, const sf::Vector2f& pos)
+	std::unique_ptr<Grass> createGrass(const std::string& name, const sf::Vector2f& pos)
 	{
 		return createProp<Grass>(name, pos);
 	}

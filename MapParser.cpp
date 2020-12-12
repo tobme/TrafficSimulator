@@ -20,29 +20,32 @@ namespace map {
 	void MapParser::addTaxi(const std::string& name, Subscriber* pSubscriber, unsigned int x, unsigned int y)
 	{
 		// Also create road for the pos
-		auto pRoad = createVerticalRoad(name, pSubscriber, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y));
-		addItem(pRoad->getName(), pRoad, true);
+		auto pRoad(createVerticalRoad(name, pSubscriber, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y)));
+		std::string roadName(pRoad->getName());
+		addMapItem<VerticalRoad*>(x, y, pRoad.get());
+		addItem(roadName, std::move(pRoad), true);
 
-		Taxi* pTaxi = createTaxi(name, pSubscriber, sf::Vector2f(50 * x, 50 * y));
-		addItem(pTaxi->getName(), pTaxi, true);
-
-		addMapItem<VerticalRoad*>(x, y, pRoad);
+		auto pTaxi(createTaxi(name, pSubscriber, sf::Vector2f(50 * x, 50 * y)));
+		std::string taxiName(pTaxi->getName());
+		addItem(taxiName, std::move(pTaxi), true);
 	}
 
 	void MapParser::addVerticalRoad(const std::string& name, Subscriber* pSubscriber, unsigned int x, unsigned int y)
 	{
-		auto pRoad = createVerticalRoad(name, pSubscriber, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y));
-		addItem(pRoad->getName(), pRoad, true);
-
-		addMapItem<VerticalRoad*>(x, y, pRoad);
+		auto pRoad(createVerticalRoad(name, pSubscriber, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y)));
+		
+		std::string roadName(pRoad->getName());
+		addMapItem<VerticalRoad*>(x, y, pRoad.get());
+		addItem(roadName, std::move(pRoad), true);
 	}
 
 	void MapParser::addGrass(const std::string& name, unsigned int x, unsigned int y)
 	{
-		auto pGrass = createGrass(name, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y));
-		addItem(pGrass->getName(), pGrass, true);
-
-		addMapItem<Grass*>(x, y, pGrass);
+		auto pGrass(createGrass(name, sf::Vector2f(PROP_SIZE * x, PROP_SIZE * y)));
+	
+		addMapItem<Grass*>(x, y, pGrass.get());
+		std::string grassName(pGrass->getName());
+		addItem(grassName, std::move(pGrass), true);
 	}
 
 	MapParser::MapParser(const std::string& configName, Subscriber* pSubscriber)

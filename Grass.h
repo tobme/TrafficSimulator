@@ -2,6 +2,8 @@
 
 #include "Prop.h"
 
+#include<iostream>
+
 namespace shapes {
 
 	class Grass : public object::RectangleProp

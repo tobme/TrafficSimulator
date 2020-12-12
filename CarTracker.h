@@ -6,8 +6,6 @@
 #include "VehicleCreatedEvents.h"
 #include "Subscriber.h"
 
-#include<unordered_map>
-
 namespace object {
 	namespace tracker {
 		class CarTracker
@@ -20,8 +18,11 @@ namespace object {
 			~CarTracker();
 
 			void doHandle(const event::VehicleCreated& e) override;
+
+			const sf::Vector2f& getPosByName(const std::string& name) const override;
+			bool isVehicleWithinArea(const sf::Vector2f& topLeftCorner, const sf::Vector2f& bottomRightCorner) const override;
 		private:
-			std::unordered_map<std::string, const sf::Vector2f&> m_vehiclePositions;
+			std::vector<std::pair<std::string, const sf::Vector2f&>> m_vehiclePositions;
 		};
 	}
 }

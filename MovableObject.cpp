@@ -59,7 +59,7 @@ namespace object {
 		//! Start the chain by updating it's GPS signal
 		void MovableObject::updateTrigger()
 		{
-			auto pos = getRotationalForwardPos(getShape()->getPosition(), m_config);
+			auto pos = getRotationalForwardPos(getTopLeftPos(), m_config);
 
 			updateCar();
 
@@ -106,7 +106,7 @@ namespace object {
 		{
 			if (m_rotationAngle == 0.0f)
 			{
-				auto pos = getShape()->getPosition();
+				auto pos = getTopLeftPos();
 
 				auto partX = (int)pos.x % 50;
 				auto partY = (int)pos.y % 50;

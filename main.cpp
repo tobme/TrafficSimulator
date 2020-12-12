@@ -22,7 +22,7 @@ int main()
 	deployWorld();
 
 	auto& world = World::getInstance();
-	auto& drawItems = world.m_drawingItems;
+	
 
 	sf::RenderWindow& window(world.m_renderwindow);
 
@@ -31,6 +31,7 @@ int main()
 
 	while (window.isOpen())
 	{
+		auto& drawItems = world.m_drawingItems;
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -40,6 +41,7 @@ int main()
 		window.clear();
 		for (const DrawableShape* item : drawItems)
 		{
+			if (item != nullptr)
 			item->draw(window);
 		}
 		window.display();

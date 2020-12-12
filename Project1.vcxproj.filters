@@ -183,6 +183,9 @@
     <ClCompile Include="CarTrackerFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="FrontCamera.cpp">
+      <Filter>Source Files\Objects\Cars</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDrawableShape.h">
@@ -328,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="CarTrackerFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ICamera.h">
+      <Filter>Header Files\Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontCamera.h">
+      <Filter>Header Files\Objects\Cars</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

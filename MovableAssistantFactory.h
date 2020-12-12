@@ -7,6 +7,6 @@
 
 namespace factory {
 
-	object::IMovingAssistantHandlerSP createIMovingAssistantHandler(base::Subscriber* pSubscriber,
+	object::IMovingAssistantHandlerUP createIMovingAssistantHandler(base::Subscriber* pSubscriber,
 		const map::Map& map);
 }

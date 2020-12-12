@@ -6,6 +6,6 @@
 #include "Subscriber.h"
 
 namespace factory {
-	object::tracker::ICarTrackerSP createCarTracker(const std::string& name,
+	object::tracker::ICarTrackerUP createCarTracker(const std::string& name,
 		base::Subscriber* pSubscriber);
 }

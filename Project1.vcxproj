@@ -138,6 +138,7 @@
     <ClCompile Include="CarTrackerFactory.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="FrontCamera.cpp" />
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="IDrawableObject.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -174,7 +175,9 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventSubription.h" />
+    <ClInclude Include="FrontCamera.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="ICamera.h" />
     <ClInclude Include="ICarTracker.h" />
     <ClInclude Include="IConfig.h" />
     <ClInclude Include="IEventHandler.h" />

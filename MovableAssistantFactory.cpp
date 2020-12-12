@@ -32,9 +32,9 @@ namespace factory {
 		return std::make_shared<TurningStateAssistant>(name, pSubscriber, map);
 	}
 
-	object::IMovingAssistantHandlerSP createIMovingAssistantHandler(base::Subscriber* pSubscriber, const map::Map& map)
+	object::IMovingAssistantHandlerUP createIMovingAssistantHandler(base::Subscriber* pSubscriber, const map::Map& map)
 	{
-		auto spMovingAssistantHandler(std::make_shared<MovingAssistantHandler>());
+		auto spMovingAssistantHandler(std::make_unique<MovingAssistantHandler>());
 
 		spMovingAssistantHandler->addAssistant(createCarMovingStateAssistant("CarMovingStateAssistant", pSubscriber, map));
 

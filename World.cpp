@@ -35,6 +35,7 @@ namespace base {
 	void World::init()
 	{
 		auto& instance = World::getInstance();
+
 		instance.m_renderwindow.create(sf::VideoMode(1600, 900), "Traffic Simulator");
 		//auto config = instance.m_spConfig;
 
@@ -42,10 +43,6 @@ namespace base {
 		instance.m_map = mapParser.getMap();
 
 		auto& drawingItems = instance.m_drawingItems;
-		std::sort(drawingItems.begin(), drawingItems.end(), [](const DrawableShape* lhs, const DrawableShape* rhs)
-			{
-				return isGreaterThan(lhs, rhs);
-			});
 
 		//config->setMap(mapParser.getMap());
 
@@ -61,14 +58,14 @@ namespace base {
 	{
 	}
 
-	void addItem(const std::string& name, IObject* object, bool add)
+	void addItem(const std::string& name, std::unique_ptr<base::IObject> object, bool add)
 	{
 		if (add)
 		{
 			auto& world = World::getInstance();
-			world.m_items[name] = std::unique_ptr<IObject>(object);
+			world.m_items[name] = std::move(object);
 
-			if (auto it = dynamic_cast<const DrawableShape*>(object))
+			if (auto it = dynamic_cast<const DrawableShape*>(world.m_items[name].get()))
 			{
 				world.m_drawingItems.push_back(it);
 

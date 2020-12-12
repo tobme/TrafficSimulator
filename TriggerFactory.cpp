@@ -7,8 +7,8 @@ using namespace base;
 
 namespace factory {
 
-	Trigger* createTrigger()
+	std::unique_ptr<Trigger> createTrigger()
 	{
-		return new Trigger("Trigger");
+		return std::make_unique<Trigger>("Trigger");
 	}
 }
