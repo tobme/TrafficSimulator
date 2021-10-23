@@ -7,16 +7,22 @@
 
 namespace object {
 	namespace cars {
-		class FrontCamera : ICamera
+		class FrontCamera : public ICamera
 		{
 		public:
-			FrontCamera(const std::string& vehicleName, const object::tracker::ICarTrackerSP spCarTracker);
+			FrontCamera(const std::string& vehicleName, const object::tracker::ICarTracker* pCarTracker);
 			~FrontCamera();
 
-			bool objectAhead(Direction dir) const;
+			/* Controls if an object is ahead.
+			* 
+			* Checks for 100 pixels.
+			* 
+			* @returns true if an object if found, otherwise, false.
+			*/
+			bool objectAhead(const sf::Vector2f& myPos, Direction dir) const override;
 		private:
 			std::string m_vehicleName;
-			const object::tracker::ICarTrackerSP m_spCarTracker
+			const object::tracker::ICarTracker* m_pCarTracker;
 		};
 	}
 }

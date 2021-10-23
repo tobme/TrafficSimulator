@@ -22,8 +22,9 @@ namespace object {
 		}
 		void CarTracker::doHandle(const event::VehicleCreated& e)
 		{
-			std::cout << "Added CAR" << std::endl;
-			m_vehiclePositions.push_back(std::make_pair<std::string, const sf::Vector2f&>(e.getName(), e.getPos()));
+			std::cout << "Added CAR " << e.getPos()->x << " " << e.getPos()->y << std::endl;
+			
+			m_vehiclePositions.push_back(std::make_pair<std::string, const sf::Vector2f*>(e.getName(), e.getPos()));
 		}
 		const sf::Vector2f& CarTracker::getPosByName(const std::string& name) const
 		{
@@ -33,21 +34,26 @@ namespace object {
 				});
 
 			if (it != m_vehiclePositions.end())
-				return it->second;
+				return *it->second;
 
 			// Not valid pos
 			return sf::Vector2f(-1, -1);
 		}
 		
-		bool CarTracker::isVehicleWithinArea(const sf::Vector2f& topLeftCorner, const sf::Vector2f& bottomRightCorner) const
+		bool CarTracker::isVehicleWithinArea(const sf::Vector2f& topLeftCorner, const sf::Vector2f& bottomRightCorner, const std::string& name) const
 		{
-			
 			for (auto&& posPair : m_vehiclePositions)
 			{
-				if (topLeftCorner.x >= posPair.second.x
-					&& bottomRightCorner.x <= posPair.second.x
-					&& topLeftCorner.y >= posPair.second.y
-					&& bottomRightCorner.y <= posPair.second.x)
+				// Exclude a vehicle.
+				if (posPair.first == name)
+				{
+					continue;
+				}
+
+				if (topLeftCorner.x <= posPair.second->x
+					&& bottomRightCorner.x >= posPair.second->x
+					&& topLeftCorner.y <= posPair.second->y
+					&& bottomRightCorner.y >= posPair.second->y)
 				{
 					return true;
 				}

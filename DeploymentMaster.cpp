@@ -19,10 +19,12 @@ namespace deployment {
 		auto pSubscriber = &World::getInstance().m_subscriber;
 		auto upICarTracker = createCarTracker("CarTracker", pSubscriber);
 
-		world.init();
-
 		std::string trackerName(upICarTracker->getName());
 		addItem(trackerName, std::move(upICarTracker), true);
+
+		world.init();
+
+
 
 		deployCars();
 	}

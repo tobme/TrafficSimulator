@@ -6,6 +6,7 @@
 #include "VehicleEventHandler.h"
 #include "Subscriber.h"
 #include "CarStates.h"
+#include "FrontCamera.h"
 
 #include "TextureId.h"
 
@@ -21,7 +22,8 @@ namespace object {
 				const base::TextureId& textureName,
 				base::Subscriber* pSubscriber,
 				const sf::Vector2f& pos,
-				unsigned int drawingorder);
+				unsigned int drawingorder,
+				ICameraSP spCamera);
 
 			virtual ~MovableObject();
 
@@ -35,6 +37,8 @@ namespace object {
 		private:
 
 			void move();
+
+			void checkFrontCamera();
 
 			void updateCar();
 
@@ -53,6 +57,7 @@ namespace object {
 			float m_speed;
 			float m_turningSpeed;
 			float m_rotationAngle;
+			ICameraSP m_spCamera;
 		};
 	}
 }

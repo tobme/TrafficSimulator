@@ -16,7 +16,7 @@ namespace object {
 
 
 
-		MovableObject::MovableObject(const std::string& name, const TextureId& textureName, Subscriber* pSubscriber, const sf::Vector2f& pos, unsigned int drawingorder)
+		MovableObject::MovableObject(const std::string& name, const TextureId& textureName, Subscriber* pSubscriber, const sf::Vector2f& pos, unsigned int drawingorder, ICameraSP spCamera)
 			: ITriggable()
 			, RectangleObject(name, std::make_unique<RectangleShape>(Vector2f(PROP_SIZE, PROP_SIZE)), textureName, pos, drawingorder)
 			, m_config()
@@ -24,13 +24,16 @@ namespace object {
 			, m_speed(0)
 			, m_turningSpeed(0)
 			, m_rotationAngle(0)
+			, m_spCamera(spCamera)
 		{
 			pSubscriber->subscribe(event::VehicleMoveSubscription, this);
 			pSubscriber->subscribe(event::VehicleSetTurnSubscription, this);
 			pSubscriber->subscribe(event::VehiclePedalSubscription, this);
 			pSubscriber->subscribe(event::VehicleTurningSubscription, this);
 
-			pSubscriber->dispatchEvent(VehicleCreated(name, pos));
+			auto pShape = getShape();
+
+			pSubscriber->dispatchEvent(VehicleCreated(name, pShape->getPosition()));
 		}
 
 
@@ -203,8 +206,20 @@ namespace object {
 			}
 		}
 
+		void MovableObject::checkFrontCamera()
+		{
+			auto pos = getTopLeftPos();
+
+			if (m_spCamera->objectAhead(pos, m_config.direction))
+			{
+				m_config.state = PedalState::BREAK;
+			}
+		}
+
 		void MovableObject::updateCar()
 		{
+			checkFrontCamera();
+
 			updateCarSpeed();
 
 			move();
